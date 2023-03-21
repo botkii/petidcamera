@@ -1,0 +1,33 @@
+ home: Builder(
+          builder: (BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Pet Identification'),
+              ),
+              body: ListView(
+                  padding: const EdgeInsets.only(left: 20, top: 30, right: 20),
+                  children: [
+                    const Padding(padding: EdgeInsets.only()),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final pickedFile =
+                            await picker.pickImage(source: ImageSource.camera);
+
+                        setState(
+                          () {
+                            if (pickedFile != null) {
+                              imageController.text = pickedFile.path;
+                              imageFile = File(imageController.text);
+                              debugPrint(imageController.text);
+                            }
+                          },
+                        );
+                      },
+                      child: imageController.text == ''
+                          ? const Text('Upload Image')
+                          : const Text('Image Uploaded'),
+                    )
+                  ]),
+            );
+          },
+        )
