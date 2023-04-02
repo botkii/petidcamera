@@ -1,7 +1,8 @@
 import 'package:first_app/screens/homepage.dart';
+import 'package:first_app/screens/imagepicker.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'screens/camera_screen.dart';
+import 'screens/camerascreen.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -40,7 +41,7 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [HomePage(), CameraScreen()];
+  List<Widget> pages = const [HomePage(), CameraScreen(), ImagePickerScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +61,10 @@ class _RootPageState extends State<RootPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.camera),
             label: 'Camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.image),
+            label: 'Image',
           ),
         ],
       ),
