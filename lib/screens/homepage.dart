@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
       ),
       body: const Center(
-        child: Text('Home Page'),
+        child: Text('Welcome to the Pet Identification App!'),
       ),
     );
   }

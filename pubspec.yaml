@@ -37,6 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   camera: ^0.10.3+2
   image_picker: ^0.8.7+1
+  path_provider: ^2.0.14
+  tflite_flutter: ^0.9.1
+  firebase_ml_model_downloader: ^0.2.1
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:
