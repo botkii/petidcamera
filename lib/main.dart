@@ -1,18 +1,13 @@
 import 'package:first_app/screens/homepage.dart';
+import 'package:first_app/screens/imagefromgallery.dart';
 import 'package:first_app/screens/imagepicker.dart';
+import 'package:first_app/screens/takepicture.dart';
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'screens/camerascreen.dart';
-
-List<CameraDescription> cameras = [];
+import 'package:image_picker/image_picker.dart';
 
 Future<void> main() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-    // cameras = await availableCameras();
-  } on CameraException catch (e) {
-    print('Error in fetching the cameras: $e');
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -22,13 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pet Identification',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const RootPage(),
-    );
+        title: 'Pet Identification',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const RootPage());
   }
 }
 
@@ -36,15 +30,24 @@ class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
 
   @override
-  State<RootPage> createState() => _RootPageState();
+  State<RootPage> createState() => RootPageState();
 }
 
-class _RootPageState extends State<RootPage> {
+class RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [HomePage(), CameraScreen(), ImagePickerScreen()];
+
+  List<Widget> pages = [
+    const HomePage(),
+    ImageFromGalleryEx(ImageSource.gallery),
+    const TakePictureScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Pet Identification'),
+      ),
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentPage,
@@ -59,12 +62,12 @@ class _RootPageState extends State<RootPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            label: 'Camera',
+            icon: Icon(Icons.image),
+            label: 'Upload',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.image),
-            label: 'Image',
+            icon: Icon(Icons.camera),
+            label: 'Camera',
           ),
         ],
       ),
